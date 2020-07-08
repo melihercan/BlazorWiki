@@ -1,0 +1,30 @@
+﻿@page "/search"
+@page "/search/{SearchString}"
+
+<h3>Search</h3>
+
+<div class="pt-4" />
+
+@if (_wikiPages.Count == 0)
+{
+    <p> Nothing found...</p>
+}
+else
+{
+    <div class="pr-5">
+        <div class="col-10 text-white lead text-center py-4" style="background: #283e4a;">Term: @SearchString</div>
+        <div class="list-group">
+            @foreach (var wikiPage in _wikiPages)
+            {
+                <div class="d-flex">
+                    <button type="button"
+                            class="col-10 list-group-item rounded-0 list-group-item-action bg-secondary text-white btn shadow-none"
+                            @onclick="@(e => PageSelected(e, wikiPage))">
+                        @wikiPage.Title
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+
+}

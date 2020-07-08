@@ -1,0 +1,44 @@
+﻿@page "/history"
+@page "/history/{Id:int}"
+
+    <h1>History</h1>
+
+@if (Id != null && _wikiPage != null)
+{
+    <div class="pr-5">
+
+        <div class="list-group">
+            <div class="col-12 text-white lead text-center py-4" style="background: #283e4a;">@_wikiPage.Title</div>
+            <div class="d-flex">
+                <div class="col-8 list-group-item rounded-0 list-group-item-action bg-secondary text-white btn shadow-none">
+                    Change description
+                </div>
+                <div class="col-3 list-group-item rounded-0 list-group-item-action bg-secondary text-white btn shadow-none">
+                    Edited at
+                </div>
+                <div class="col list-group-item rounded-0 list-group-item-action bg-secondary text-white btn shadow-none">
+                    Diff
+                </div>
+            </div>
+            @foreach (var wikiContent in _wikiContents)
+            {
+                <div class="d-flex">
+                    <div class="col-8 list-group-item rounded-0 list-group-item-action bg-light btn shadow-none">
+                        @wikiContent.ChangeDescription
+                    </div>
+                    <div class="col-3 list-group-item rounded-0 list-group-item-action bg-light btn shadow-none">
+                        @wikiContent.Timestamp
+                    </div>
+                    <button type="button"
+                            class="col list-group-item rounded-0 list-group-item-action bg-primary text-white btn shadow-none"
+                            data-toggle="tooltip" title="diff"
+                            @onclick="@(e => DiffSelected(e, wikiContent))">
+                        <span class="oi oi-zoom-in" />
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+
+        }
+

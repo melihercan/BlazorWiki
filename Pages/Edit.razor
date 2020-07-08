@@ -1,0 +1,40 @@
+﻿@page "/edit"
+@page "/edit/{Id:int}"
+
+<h3>Edit</h3>
+
+<EditForm class="pt-3 pb-5" Model="@_wikiPage" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="flex-column">
+        <div class="flex-row">
+            <label class="w-25" for="title">Title:</label>
+            <InputText  class="w-50" id="title" @bind-Value="@_wikiPage.Title" />
+        </div>
+        <div class="flex-row">
+            <label class="w-25" for="description">Describe the change:</label>
+            <InputText class="w-50" id="description" @bind-Value="@_wikiContent.ChangeDescription" />
+        </div>
+        <div class="d-flex flex-row justify-content-center">
+            <button type="submit">Submit</button>
+        </div>
+    </div>
+
+</EditForm>
+
+
+<div class="row">
+    <div class="col-6">
+        <div class="bg-info pl-2">type Markdown...</div>
+        <textarea class="form-control" @bind-value="Body" @bind-value:event="oninput"></textarea>
+    </div>
+    <div class="col-6">
+        <div class="bg-info pl-2">and see it in HTML</div>
+        @((MarkupString) Preview)
+    </div>
+</div>
+
+
+
+

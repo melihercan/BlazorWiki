@@ -1,0 +1,25 @@
+﻿@page "/uploadfiles"
+
+<h3>UploadFiles</h3>
+
+<div class="py-3"/>
+
+<InputFile OnChange="FilesSelected" />
+
+<div class="py-3"/>
+
+<div>
+    <p class="text-info">
+        The uploaded files can be accessed by using the URL address "/files/...<br/>
+        For example loaded image "car.png" can be accessed via "/files/car.png""
+    </p>
+</div>
+
+<div class="py-3"/>
+<div>
+@foreach(var log in _logs)
+{
+    <p>@log</p>
+}
+</div>
+
