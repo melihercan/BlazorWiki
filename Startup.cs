@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using BlazorWiki.Data;
 using BlazorWiki.Interfaces;
 using BlazorWiki.Services;
+using Blazorme;
 
 namespace BlazorWiki
 {
@@ -31,10 +32,9 @@ namespace BlazorWiki
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-//            services.AddDbContext<ApplicationDbContext>(options =>
-  //              options.UseSqlite("Data Source=Data/BlazorWiki.db"));
             services.AddSingleton<IRegistry, Registry>();
             services.AddSingleton<IRepository, Repository>();
+            services.AddDiff();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
