@@ -59,5 +59,19 @@ namespace BlazorWiki.Services
                 await _db.SaveChangesAsync();
             }
         }
+
+        public async Task DeleteAsync(int wikiPageId)
+        {
+            var page = await _db.WikiPages.FindAsync(wikiPageId);
+            if (page != null)
+            {
+                foreach (var content in page.WikiContents)
+                {
+                    _db.WikiContents.Remove(content);
+                }
+                _db.WikiPages.Remove(page);
+                await _db.SaveChangesAsync();
+            }
+        }
     }
 }

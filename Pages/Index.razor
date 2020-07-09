@@ -20,47 +20,59 @@
 
 <div class="py-4" />
 
-<div class="pr-5">
-    <div class="col-10 text-white lead text-center py-4" style="background: #283e4a;">Wiki pages</div>
+<div>
+    <div class="col-12 text-white lead text-center py-4" style="background: #283e4a;">Wiki pages</div>
     <div class="list-group">
         @foreach (var wikiPage in _wikiPages)
         {
-            <div class="d-flex">
-                @if (FileExists(wikiPage.Title))
-                {
-                    <button type="button"
-                            class="col-10 list-group-item rounded-0 list-group-item-action bg-secondary text-white btn shadow-none"
-                            @onclick="@(e => PageSelected(e, wikiPage))">
-                        @wikiPage.Title
-                    </button>
-                    <button type="button"
-                            class="col m-2  list-group-item list-group-item-action bg-info text-white btn shadow-none"
-                            data-toggle="tooltip" title="edit page"
-                            @onclick="@(e => EditSelected(e, wikiPage))">
-                        <span class="oi oi-pencil" />
-                    </button>
-                    <button type="button"
-                            class="col my-2 list-group-item list-group-item-action bg-info text-white btn shadow-none"
-                            data-toggle="tooltip" title="page history"
-                            @onclick="@(e => HistorySelected(e, wikiPage))">
-                        <span class="oi oi-fork" />
-                    </button>
-                }
-                else
-                {
-                    <button type="button"
-                            class="col-10 list-group-item rounded-0 list-group-item-action bg-danger text-white btn shadow-none">
-                        @wikiPage.Title
-                    </button>
-                    <button type="button"
-                            class="col-1 m-2  list-group-item list-group-item-action bg-danger text-white btn shadow-none"
-                            data-toggle="tooltip" title="edit page"
-                            @onclick="@(e => EditAbsentSelected(e, wikiPage))">
-                        <span class="oi oi-pencil" />
-                    </button>
-                }
+        <div class="d-flex">
+            @if (FileExists(wikiPage.Title))
+            {
+                <button type="button"
+                        class="col-9 list-group-item rounded-0 list-group-item-action bg-secondary text-white btn shadow-none"
+                        @onclick="@(e => PageSelected(e, wikiPage))">
+                    @wikiPage.Title
+                </button>
+                <button type="button"
+                        class="col-1 list-group-item rounded-0 list-group-item-action bg-info text-white btn shadow-none"
+                        data-toggle="tooltip" title="edit page"
+                        @onclick="@(e => EditSelected(e, wikiPage))">
+                    <span class="oi oi-pencil"></span>
+                </button>
+                <button type="button"
+                        class="col-1 list-group-item rounded-0 list-group-item-action bg-info text-white btn shadow-none"
+                        data-toggle="tooltip" title="page history"
+                        @onclick="@(e => HistorySelected(e, wikiPage))">
+                    <span class="oi oi-fork"></span>
+                </button>
+                <button type="button"
+                        class="col-1 list-group-item rounded-0 list-group-item-action bg-danger text-white btn shadow-none"
+                        data-toggle="tooltip" title="delete page"
+                        @onclick="@(e => DeleteSelected(e, wikiPage))">
+                    <span class="oi oi-circle-x"></span>
+                </button>
+            }
+            else
+            {
+                <button type="button"
+                        class="col-9 list-group-item rounded-0 list-group-item-action bg-danger text-white btn shadow-none">
+                    @wikiPage.Title
+                </button>
+                <button type="button"
+                        class="col-1 list-group-item rounded-0 list-group-item-action bg-danger text-white btn shadow-none"
+                        data-toggle="tooltip" title="edit page"
+                        @onclick="@(e => EditAbsentSelected(e, wikiPage))">
+                    <span class="oi oi-pencil"></span>
+                </button>
+                <button type="button"
+                        class="col-1 list-group-item rounded-0 list-group-item-action bg-danger text-white btn shadow-none"
+                        data-toggle="tooltip" title="delete page"
+                        @onclick="@(e => DeleteSelected(e, wikiPage))">
+                    <span class="oi oi-circle-x"></span>
+                </button>
+            }
 
-            </div>
+        </div>
         }
     </div>
 </div>

@@ -19,5 +19,7 @@ namespace BlazorWiki.Interfaces
         Task UpdateAsync(int wikiPageId, WikiContent wikiContent);
 
         Task CleanupContentsAsync(int wikiPageId);
+
+        Task DeleteAsync(int wikiPageId);
     }
 }

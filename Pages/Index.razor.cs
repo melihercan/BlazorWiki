@@ -66,15 +66,29 @@ namespace BlazorWiki.Pages
             }
         }
 
+        private async void DeleteSelected(MouseEventArgs e, WikiPage wikiPage)
+        {
+            if(FileExists(wikiPage.Title))
+            {
+                FileDelete(wikiPage.Title);
+            }
+            await _repository.DeleteAsync(wikiPage.WikiPageId);
+            _wikiPages = await _repository.GetAllAsync();
+        }
+
         private bool FileExists(string _wikiPageTitle)
         {
             var file = _wikiPageTitle + ".html";
             var pagesPath = _configuration.GetValue<string>("WikiPaths:Pages");
             var path = pagesPath + file;
             return File.Exists(path);
-
-
         }
-
+        private void FileDelete(string _wikiPageTitle)
+        {
+            var file = _wikiPageTitle + ".html";
+            var pagesPath = _configuration.GetValue<string>("WikiPaths:Pages");
+            var path = pagesPath + file;
+            File.Delete(path);
+        }
     }
 }
